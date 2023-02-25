@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'earnings.apps.EarningsConfig',
     'expenses.apps.ExpensesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
