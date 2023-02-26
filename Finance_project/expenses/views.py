@@ -5,19 +5,17 @@ from .forms import ExpenseForm
 
 def home(request):
     return render(request,'Homepage/index.html')
-def expense_form_view(request):
+
+def expense_list_view(request):
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'Homepage/pages/Expenses/expenses.html')
+            expense = Expense.objects.all()
+            return render(request, 'Homepage/pages/Expenses/expenses.html', {'form': form, 'expenses': expense})
     else:
         form = ExpenseForm()
     return render(request, 'Homepage/pages/Expenses/expenses.html', {'form': form})
-
-def expense_list_view(request):
-    expenses = Expense.objects.all()
-    return render(request, 'Homepage/pages/Expenses/expenses.html', {'expenses': expenses})
 
 def icon(request):
     return render(request,'Homepage/pages/icons/mdi.html')
