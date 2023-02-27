@@ -1,0 +1,47 @@
+<!-- expenses/expense_update_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <form class="card-body" method="POST" action="{% url 'expenses:update_expense' expense.id %}">
+    {% csrf_token %}
+    <h4 class="card-title">Edit Expense</h4>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="date">Select a date:</label>
+            </div>
+            <input type="date" class="form-control" id="date" name="date" value="{{ expense.date }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="item_name">Name</label>
+            </div>
+            <input type="text" id="item_name" class="form-control" placeholder="Item name" aria-label="Item name" aria-describedby="basic-addon1" name="item_name" value="{{ expense.item_name }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="btn btn-sm btn-outline-primary dropdown-toggle" for="payment_method" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$</label>
+                <select class="dropdown-menu" id="payment_method" name="payment_method">
+                    <option value="cash" class="dropdown-item" {% if expense.payment_method == 'cash' %}selected{% endif %}>Cash</option>
+                    <option value="credit" class="dropdown-item" {% if expense.payment_method == 'credit' %}selected{% endif %}>Credit</option>
+                    <option value="debit" class="dropdown-item" {% if expense.payment_method == 'debit' %}selected{% endif %}>Debit</option>
+                </select>
+            </div>
+            <input id="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="amount" value="{{ expense.amount }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description">Descriptions</label>
+        <textarea id="description" class="form-control" rows="4" name="description">{{ expense.description }}</textarea>
+    </div>
+    <button type="submit" value="save" class="btn btn-gradient-success">Update</button>
+</form>
+
+</div>
+{% endblock %}

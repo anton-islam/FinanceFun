@@ -3,6 +3,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.expense_list_view, name='expenses'),
-    path('icon/', views.icon, name='icon'),
+    path('', views.home, name='home'),
 ]
