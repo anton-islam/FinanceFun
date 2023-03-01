@@ -93,13 +93,12 @@
             <td> {{ expense.item_name }} </td>
             <td> {{ expense.amount }} </td>
             <td> {{ expense.payment_method }}</td>
+            <td><p> {{ expense.description }}</p></td>
             <td>
-              <p> {{ expense.description }}</p>
+              <button type="button" class="btn btn-gradient-primary btn-sm" onclick="editExpense({{ expense.id }})">Edit</button>
+              <button type="button" class="btn btn-gradient-danger btn-sm" onclick="removeExpense({{ expense.id }})">Remove</button>
             </td>
-            <td>
-              <a type="button" class="btn btn-gradient-primary btn-sm">Edit</a>
-              <a type="button" class="btn btn-gradient-danger btn-sm">Remove</a>
-            </td>
+
           </tr>
           {% endfor %}
           </tbody>

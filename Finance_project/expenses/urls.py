@@ -4,5 +4,4 @@ from . import views
 
 urlpatterns = [
     path('', views.expense_list_view, name='expenses'),
-    path('icon/', views.icon, name='icon'),
 ]
